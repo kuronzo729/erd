@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="erd_penjualan" name="ERD Penjualan">
+    <mxGraphModel dx="1105" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- CUSTOMER -->
+        <mxCell id="customer" value="Customer&#10;----------------------&#10;customer_id (PK)&#10;nama&#10;alamat&#10;telepon&#10;email" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- PRODUCT -->
+        <mxCell id="product" value="Product&#10;----------------------&#10;product_id (PK)&#10;nama_produk&#10;harga&#10;stok" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="200" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- ORDER -->
+        <mxCell id="order" value="Order&#10;----------------------&#10;order_id (PK)&#10;customer_id (FK)&#10;tanggal_order&#10;total_harga" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="200" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- ORDER DETAIL -->
+        <mxCell id="order_detail" value="OrderDetail&#10;----------------------&#10;order_detail_id (PK)&#10;order_id (FK)&#10;product_id (FK)&#10;jumlah&#10;harga_satuan&#10;subtotal" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="340" y="260" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- PAYMENT -->
+        <mxCell id="payment" value="Payment&#10;----------------------&#10;payment_id (PK)&#10;order_id (FK)&#10;metode_bayar&#10;tanggal_bayar&#10;jumlah_bayar" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- RELATIONSHIPS -->
+
+        <!-- Customer 1..* Order -->
+        <mxCell id="rel_customer_order" edge="1" source="customer" target="order" parent="1"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Order 1..* OrderDetail -->
+        <mxCell id="rel_order_orderdetail" edge="1" source="order" target="order_detail" parent="1"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Product 1..* OrderDetail -->
+        <mxCell id="rel_product_orderdetail" edge="1" source="product" target="order_detail" parent="1"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Order 1..1 Payment -->
+        <mxCell id="rel_order_payment" edge="1" source="order" target="payment" parent="1"
+                style="endArrow=ERone;startArrow=ERone;strokeColor=#000000;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
