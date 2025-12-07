@@ -1,62 +1,100 @@
 <mxfile host="app.diagrams.net">
-  <diagram id="erd_penjualan" name="ERD Penjualan">
-    <mxGraphModel dx="1105" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100">
+  <diagram id="erd_penjualan_kompleks" name="ERD Penjualan Kompleks">
+    <mxGraphModel dx="1105" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1">
       <root>
         <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
+        <mxCell id="1"/>
 
         <!-- CUSTOMER -->
-        <mxCell id="customer" value="Customer&#10;----------------------&#10;customer_id (PK)&#10;nama&#10;alamat&#10;telepon&#10;email" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="200" height="140" as="geometry"/>
+        <mxCell id="customer" value="Customer&#10;----------------------&#10;customer_id (PK)&#10;nama&#10;email&#10;telepon&#10;tanggal_daftar&#10;status_akun" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1">
+          <mxGeometry x="40" y="40" width="210" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- ADDRESS -->
+        <mxCell id="address" value="Address&#10;----------------------&#10;address_id (PK)&#10;customer_id (FK)&#10;alamat_lengkap&#10;kota&#10;provinsi&#10;kode_pos" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#d0e1ff;strokeColor=#5d7bb3;" vertex="1">
+          <mxGeometry x="300" y="40" width="210" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- CATEGORY -->
+        <mxCell id="category" value="Category&#10;----------------------&#10;category_id (PK)&#10;nama_kategori&#10;deskripsi" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1">
+          <mxGeometry x="600" y="40" width="200" height="130" as="geometry"/>
         </mxCell>
 
         <!-- PRODUCT -->
-        <mxCell id="product" value="Product&#10;----------------------&#10;product_id (PK)&#10;nama_produk&#10;harga&#10;stok" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="340" y="40" width="200" height="140" as="geometry"/>
+        <mxCell id="product" value="Product&#10;----------------------&#10;product_id (PK)&#10;category_id (FK)&#10;nama_produk&#10;harga&#10;stok&#10;berat_barang&#10;deskripsi" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1">
+          <mxGeometry x="600" y="220" width="220" height="180" as="geometry"/>
+        </mxCell>
+
+        <!-- SUPPLIER -->
+        <mxCell id="supplier" value="Supplier&#10;----------------------&#10;supplier_id (PK)&#10;nama&#10;telepon&#10;alamat" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#fad7ac;strokeColor=#b47f1a;" vertex="1">
+          <mxGeometry x="900" y="40" width="210" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- PURCHASE ORDER -->
+        <mxCell id="purchase_order" value="PurchaseOrder&#10;----------------------&#10;po_id (PK)&#10;supplier_id (FK)&#10;tanggal_po&#10;status_po&#10;total_po" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1">
+          <mxGeometry x="900" y="220" width="210" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- PURCHASE ORDER DETAIL -->
+        <mxCell id="po_detail" value="PurchaseOrderDetail&#10;----------------------&#10;po_detail_id (PK)&#10;po_id (FK)&#10;product_id (FK)&#10;qty&#10;harga_beli&#10;subtotal" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1">
+          <mxGeometry x="900" y="410" width="230" height="170" as="geometry"/>
         </mxCell>
 
         <!-- ORDER -->
-        <mxCell id="order" value="Order&#10;----------------------&#10;order_id (PK)&#10;customer_id (FK)&#10;tanggal_order&#10;total_harga" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
-          <mxGeometry x="40" y="260" width="200" height="140" as="geometry"/>
+        <mxCell id="order" value="Order&#10;----------------------&#10;order_id (PK)&#10;customer_id (FK)&#10;user_id (FK)&#10;tanggal_order&#10;status_order&#10;total_harga&#10;alamat_kirim_id (FK)" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1">
+          <mxGeometry x="40" y="260" width="230" height="180" as="geometry"/>
         </mxCell>
 
         <!-- ORDER DETAIL -->
-        <mxCell id="order_detail" value="OrderDetail&#10;----------------------&#10;order_detail_id (PK)&#10;order_id (FK)&#10;product_id (FK)&#10;jumlah&#10;harga_satuan&#10;subtotal" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="340" y="260" width="220" height="160" as="geometry"/>
+        <mxCell id="order_detail" value="OrderDetail&#10;----------------------&#10;order_detail_id (PK)&#10;order_id (FK)&#10;product_id (FK)&#10;jumlah&#10;harga_satuan&#10;subtotal" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1">
+          <mxGeometry x="300" y="260" width="230" height="180" as="geometry"/>
         </mxCell>
 
         <!-- PAYMENT -->
-        <mxCell id="payment" value="Payment&#10;----------------------&#10;payment_id (PK)&#10;order_id (FK)&#10;metode_bayar&#10;tanggal_bayar&#10;jumlah_bayar" style="shape=rectangle;whiteSpace=wrap;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="40" y="480" width="220" height="160" as="geometry"/>
+        <mxCell id="payment" value="Payment&#10;----------------------&#10;payment_id (PK)&#10;order_id (FK)&#10;metode_bayar&#10;tanggal_bayar&#10;jumlah_bayar&#10;status_bayar" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor:#f8cecc;strokeColor:#b85450;" vertex="1">
+          <mxGeometry x="40" y="480" width="230" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- SHIPMENT -->
+        <mxCell id="shipment" value="Shipment&#10;----------------------&#10;shipment_id (PK)&#10;order_id (FK)&#10;kurir&#10;nomor_resi&#10;status_kiriman&#10;tanggal_kirim" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor:#ffe6f2;strokeColor:#d14a7c;" vertex="1">
+          <mxGeometry x="300" y="480" width="230" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- USER -->
+        <mxCell id="user" value="User (Kasir/Admin)&#10;----------------------&#10;user_id (PK)&#10;nama_user&#10;username&#10;password&#10;role" style="shape=rectangle;rounded=1;whiteSpace=wrap;fillColor:#e1d5e7;strokeColor:#9673a6;" vertex="1">
+          <mxGeometry x="40" y="700" width="230" height="160" as="geometry"/>
         </mxCell>
 
         <!-- RELATIONSHIPS -->
 
-        <!-- Customer 1..* Order -->
-        <mxCell id="rel_customer_order" edge="1" source="customer" target="order" parent="1"
-                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+        <mxCell id="rel_customer_address" edge="1" source="customer" target="address"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_customer_order" edge="1" source="customer" target="order"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_category_product" edge="1" source="category" target="product"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_supplier_po" edge="1" source="supplier" target="purchase_order"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_po_podetail" edge="1" source="purchase_order" target="po_detail"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_product_podetail" edge="1" source="product" target="po_detail"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
 
-        <!-- Order 1..* OrderDetail -->
-        <mxCell id="rel_order_orderdetail" edge="1" source="order" target="order_detail" parent="1"
-                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+        <mxCell id="rel_order_orderdetail" edge="1" source="order" target="order_detail"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_product_orderdetail" edge="1" source="product" target="order_detail"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
 
-        <!-- Product 1..* OrderDetail -->
-        <mxCell id="rel_product_orderdetail" edge="1" source="product" target="order_detail" parent="1"
-                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000000;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+        <mxCell id="rel_order_payment" edge="1" source="order" target="payment"
+                style="endArrow=ERone;startArrow=ERone;strokeColor=#000"/>
+        <mxCell id="rel_order_shipment" edge="1" source="order" target="shipment"
+                style="endArrow=ERone;startArrow=ERone;strokeColor=#000"/>
 
-        <!-- Order 1..1 Payment -->
-        <mxCell id="rel_order_payment" edge="1" source="order" target="payment" parent="1"
-                style="endArrow=ERone;startArrow=ERone;strokeColor=#000000;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
+        <mxCell id="rel_user_order" edge="1" source="user" target="order"
+                style="endArrow=ERmany;startArrow=ERone;strokeColor=#000"/>
 
       </root>
     </mxGraphModel>
   </diagram>
 </mxfile>
+
